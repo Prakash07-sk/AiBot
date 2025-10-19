@@ -1,0 +1,21 @@
+{
+  "title": "Wizz",
+  "logoPath": "/src/assets/logo.png",
+  "theme": {
+    "primaryColor": "#6B46C1",
+    "secondaryColor": "#F97316",
+    "backgroundColor": "#ffffff",
+    "textColor": "#333333"
+  },
+  "quickSuggestions": [
+    "How can you help me?",
+    "What services do you offer?",
+    "Tell me about your features",
+    "How do I get started?"
+  ],
+  "branding": {
+    "footerText": "Powered by",
+    "brandName": "wizzcomAi.com",
+    "brandLink": "https://wizzcomAi.com"
+  }
+}

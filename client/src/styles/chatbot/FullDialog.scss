@@ -1,0 +1,170 @@
+.chat-dialog {
+  .MuiDialog-container {
+    overflow: hidden !important;
+  }
+
+  .chat-dialog-paper {
+    @media (max-width: 768px) {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  .chat-dialog-title {
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+      pointer-events: none;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+  }
+
+  .chat-dialog-content {
+    .messages-container {
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(139, 92, 246, 0.2);
+        border-radius: 4px;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: rgba(139, 92, 246, 0.6);
+        }
+      }
+
+      &:hover {
+        &::-webkit-scrollbar-thumb {
+          background: rgba(139, 92, 246, 0.4);
+        }
+      }
+    }
+
+    .input-container {
+      @media (max-width: 768px) {
+        padding: 12px 16px;
+      }
+    }
+  }
+}
+
+.full-dialog-backdrop {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Remove backdrop when embedded in iframe */
+html[data-embedded="true"] .full-dialog-backdrop {
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@keyframes icon-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 2px 6px rgba(139, 92, 246, 0.3)) brightness(1);
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 4px 12px rgba(236, 72, 153, 0.5)) brightness(1.2);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 4px 12px rgba(255,255,255,0.3));
+  }
+  50% {
+    transform: scale(1.05) rotate(5deg);
+    filter: drop-shadow(0 6px 20px rgba(255,255,255,0.5));
+  }
+}
+
+.ai-themed-header {
+  animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Remove all shadows and glassy effects in embedded mode */
+html[data-embedded="true"] {
+  .chat-dialog {
+    pointer-events: auto !important;
+    
+    .chat-dialog-paper {
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+  }
+  
+  .chat-widget-container .chat-widget-fab {
+    box-shadow: none !important;
+  }
+}
