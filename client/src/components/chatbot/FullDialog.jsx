@@ -8,8 +8,9 @@ import {
   Box,
   Slide,
   Chip,
+  Alert,
 } from '@mui/material';
-import { Close as CloseIcon, Send as SendIcon, AttachFile as AttachIcon, OpenInNew as OpenInNewIcon, AutoAwesome as AIIcon } from '@mui/icons-material';
+import { Close as CloseIcon, Send as SendIcon, AttachFile as AttachIcon, OpenInNew as OpenInNewIcon, AutoAwesome as AIIcon, ErrorOutline as ErrorIcon } from '@mui/icons-material';
 import MessageBubble from './MessageBubble';
 import LoadingIndicator from './LoadingIndicator';
 import BrandingFooter from './BrandingFooter';
@@ -128,6 +129,7 @@ const FullDialog = ({ open, onClose, onNewMessage }) => {
         role: 'bot',
         content: response.response || response.message || 'I received your message.',
         timestamp: Date.now(),
+        isError: false,
       };
 
       setMessages((prev) => 
@@ -140,13 +142,19 @@ const FullDialog = ({ open, onClose, onNewMessage }) => {
         onNewMessage?.();
       }
     } catch (error) {
+      // Enhanced error handling with error styling
       const errorMessage = {
         id: (Date.now() + 1).toString(),
         role: 'bot',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: error.message || 'Sorry, I encountered an error. Please try again.',
         timestamp: Date.now(),
+        isError: true, // Flag for error styling
       };
       setMessages((prev) => [...prev, errorMessage]);
+      
+      if (!isOpenRef.current) {
+        onNewMessage?.();
+      }
     } finally {
       setIsLoading(false);
     }
